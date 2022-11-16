@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <input class="rounded" type="text" placeholder="Search" v-model="search">
+        <input class="rounded" type="text" placeholder="Search" v-model="search" @keyup.enter="filter()">
         <button class="rounded" @click="filter()"><i class=" fa-solid fa-magnifying-glass"></i></button>
     </div>
 </template>
