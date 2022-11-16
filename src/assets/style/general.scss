@@ -5,3 +5,14 @@ $fa-font-path: '../webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    max-width: 1170px;
+    width: 80%;
+    margin: 0 auto;
+}
