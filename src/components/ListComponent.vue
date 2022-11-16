@@ -1,8 +1,12 @@
 <template>
     <section class="container">
-        <h2>{{ listType }}</h2>
+        <h2>Movie</h2>
         <div class="scroll">
-            <CardComponent v-for="(card, index) in store.cardList" :key="index" :element="card" />
+            <CardComponent v-for="(card, index) in store.movieCardList" :key="index" :element="card" />
+        </div>
+        <h2>Series</h2>
+        <div class="scroll">
+            <CardComponent v-for="(card, index) in store.serieCardList" :key="index" :element="card" />
         </div>
     </section>
 </template>
@@ -24,17 +28,10 @@ export default {
         CardComponent
     },
     methods: {
-        getMovieList() {
-            axios.get(store.apiMovieRef).then((answer) => {
-                console.log(answer.data.results);
-                store.cardList = [...answer.data.results];
-                this.listType = 'Movie';
-            }
-            )
-        }
     },
     created() {
-        this.getMovieList()
+        store.getMovieList()
+        store.getSerieList()
     }
 }
 </script>
@@ -45,6 +42,10 @@ export default {
 
 section {
     max-width: none;
+
+    h2 {
+        margin-top: 2rem;
+    }
 
     .scroll {
         overflow-x: auto;

@@ -1,13 +1,28 @@
 <template>
     <div class="wrapper">
-        <input class="rounded" type="text" placeholder="Search">
-        <button class="rounded"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <input class="rounded" type="text" placeholder="Search" v-model="search">
+        <button class="rounded" @click="filter()"><i class=" fa-solid fa-magnifying-glass"></i></button>
     </div>
 </template>
 
 <script>
+import { store } from '../assets/store.js';
 export default {
     name: 'SearchComponent',
+    data() {
+        return {
+            store,
+            search: null,
+        }
+    },
+    methods: {
+        filter() {
+            store.querySearch = this.search;
+            store.getMovieList();
+            store.getSerieList();
+
+        }
+    },
 }
 </script>
 

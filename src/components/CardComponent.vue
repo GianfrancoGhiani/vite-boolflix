@@ -4,8 +4,15 @@
             <img :src="store.imgBasePath + element.poster_path" alt="">
         </div>
         <div class="card-details">
-            <div class="title">{{ element.title }}</div>
-            <div class="or-title">{{ element.original_title }} <img :src="store.apiLang + getLang()" alt=""></div>
+            <div class="title" v-if="element.title">{{ element.title }}</div>
+            <div class="title" v-else="element.name">{{ element.name }}</div>
+            <div class="or-title" v-if="element.original_title">{{ element.original_title }}
+                <img :src="store.apiLang + getLang()" alt="">
+            </div>
+            <div class="or-title" v-else="element.original_name">{{ element.original_name }}
+                <img :src="store.apiLang + getLang()" alt="">
+            </div>
+
             <div class="votes">{{ element.vote_count }}</div>
         </div>
     </div>
@@ -13,8 +20,8 @@
 
 <script>
 import axios from 'axios';
-
 import { store } from '../assets/store.js';
+
 export default {
     name: 'CardComponent',
     data() {
@@ -29,6 +36,8 @@ export default {
         getLang() {
             if (this.element.original_language == 'en') {
                 return 'gb'
+            } else if (this.element.original_language == 'ja') {
+                return 'jp'
             } else {
                 return this.element.original_language
             }
