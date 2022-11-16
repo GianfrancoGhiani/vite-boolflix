@@ -1,12 +1,18 @@
 <template>
-    <div>
 
-    </div>
+    <JumboComponent />
+
+    <!-- film list -->
+    <ListComponent />
 </template>
 
 <script>
-export default {
+import JumboComponent from './JumboComponent.vue';
+import ListComponent from './ListComponent.vue';
 
+export default {
+    name: 'BodyComponent',
+    components: { JumboComponent, ListComponent }
 }
 </script>
 

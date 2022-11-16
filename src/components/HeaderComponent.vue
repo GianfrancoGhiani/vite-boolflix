@@ -11,6 +11,7 @@
 import SearchComponent from './SearchComponent.vue';
 
 export default {
+    name: 'HeaderComponent',
     data() {
         return {
 
@@ -27,7 +28,7 @@ export default {
 
 .top-bar {
     background-color: $black;
-    height: 3rem;
+    height: 4rem;
 
     .container {
         @include flexrow;
@@ -35,7 +36,7 @@ export default {
         max-height: 100%;
 
         img {
-            height: 3rem;
+            height: 4rem;
         }
     }
 }
