@@ -72,9 +72,12 @@ export const store = reactive({
         axios.get(this.jumboSerie + this.activeCard + this.apiKey).then((answer) => {
           this.activeElement = answer.data;
           // console.log(this.activeElement)
-          axios.get(this.jumboSerie + this.activeElement.id + this.apiKey).then((answer) => {
+          axios.get(this.jumboSerie + this.activeElement.id +'/credits'+ this.apiKey).then((answer) => {
             this.castList = [...answer.data.cast];
-            console.log(this.castList[0])
+            console.log(this.castList[0], this.typeList)
+            for (let i = 0; i < 5; i++){
+              this.profile_path.push(this.castList[i].profile_path)
+            }
         }
         )
       }

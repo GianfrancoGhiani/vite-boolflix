@@ -18,7 +18,7 @@
                 <span class="stars" v-html="store.jumboStarCreate()"> </span>
                 {{ store.activeElement.vote_count }}
             </div>
-            <div class="overview">
+            <div class="overview" v-if="store.activeElement.overview">
                 <div>Overview:</div>{{ store.activeElement.overview }}
             </div>
             <div class="cast" v-if="store.castList">
