@@ -1,5 +1,5 @@
 <template>
-    <div class="my-card" @mouseover="getStars()">
+    <div class="my-card" @mouseover="getStars()" @click="getCard()">
         <div class="card-start">
             <img :src="store.imgBasePath + element.poster_path" alt="">
         </div>
@@ -40,6 +40,16 @@ export default {
         element: Object,
     },
     methods: {
+        getCard() {
+            if (this.element.title) {
+                store.typeList = 'movie'
+            } else {
+                store.typeList = 'serie'
+            }
+            store.activeCard = this.element.id
+            store.getJumboElement();
+            store.search = false;
+        },
         getStars() {
             // this will return only int or int.5 num
             this.stars = Math.round((((this.element.vote_average / 2) * 10) / 10) * 2) / 2;
@@ -61,6 +71,9 @@ export default {
                 return 'gb'
             } else if (this.element.original_language == 'ja') {
                 return 'jp'
+            } else if (this.element.original_language == 'uk') {
+                return 'ukr'
+
             } else {
                 return this.element.original_language
             }
@@ -98,7 +111,7 @@ export default {
     }
 
     .card-details {
-        background: linear-gradient(180deg, #000000 64.34%, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(180.22deg, #000000 55.4%, rgba(0, 0, 0, 0.5) 99.81%);
         width: 100%;
         height: 100%;
         display: none;
@@ -136,6 +149,7 @@ export default {
                 color: $white;
             }
 
+            margin-bottom: 0.2rem;
         }
 
         .overview {
@@ -143,7 +157,6 @@ export default {
             height: 190px;
             overflow-y: auto;
             white-space: break-spaces;
-            word-break: break-all;
             font-size: 85%;
             padding: .3rem;
             color: $grey-text;

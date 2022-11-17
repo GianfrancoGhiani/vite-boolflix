@@ -17,9 +17,10 @@ export default {
     },
     methods: {
         filter() {
-            store.querySearch = this.search;
+            store.querySearch = '&query=' + this.search;
             store.getMovieList();
             store.getSerieList();
+            store.search = true;
 
         }
     },

@@ -1,12 +1,7 @@
 <template>
-    <section class="container">
-        <h2>Movie</h2>
+    <section>
         <div class="scroll">
-            <CardComponent v-for="(card, index) in store.movieCardList" :key="index" :element="card" />
-        </div>
-        <h2>Series</h2>
-        <div class="scroll">
-            <CardComponent v-for="(card, index) in store.serieCardList" :key="index" :element="card" />
+            <CardComponent v-for="(card, index) in cardList" :key="index" :element="card" />
         </div>
     </section>
 </template>
@@ -24,14 +19,16 @@ export default {
             listType: '',
         }
     },
+    props: {
+        cardList: Array
+    },
     components: {
         CardComponent
     },
     methods: {
     },
     created() {
-        store.getMovieList()
-        store.getSerieList()
+
     }
 }
 </script>
@@ -40,12 +37,10 @@ export default {
 @use '../assets/style/partials/mixin.scss' as *;
 @use '../assets/style/partials/variables.scss' as *;
 
+
+
 section {
     max-width: none;
-
-    h2 {
-        margin-top: 2rem;
-    }
 
     div.scroll {
         overflow-x: auto;
