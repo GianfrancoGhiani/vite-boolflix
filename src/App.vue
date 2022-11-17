@@ -1,6 +1,10 @@
 <template>
-  <HeaderComponent />
-  <BodyComponent />
+  <header>
+    <HeaderComponent />
+  </header>
+  <main>
+    <BodyComponent />
+  </main>
 </template>
 
 <script>
@@ -13,5 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+main {
+  margin-top: 4rem;
+}
 </style>

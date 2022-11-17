@@ -21,7 +21,7 @@ export default {
             store.getMovieList();
             store.getSerieList();
             store.search = true;
-
+            this.search = '';
         }
     },
 }
@@ -48,6 +48,7 @@ export default {
         &:hover {
             color: $black;
             background-color: $white;
+
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="my-card" @mouseover="getStars()" @click="getCard()">
         <div class="card-start">
-            <img :src="store.imgBasePath + element.poster_path" alt="">
+            <img :src="cardPath" alt="">
         </div>
         <div class="card-details">
             <div class="title" v-if="element.title">{{ element.title }}</div>
@@ -12,11 +12,12 @@
             <div class="or-title" v-else>{{ element.original_name }}
                 <img :src="store.apiLang + getLang()" alt="">
             </div>
+
             <div class="votes">
                 <span class="stars" v-html="starCreate()"> </span>
                 {{ element.vote_count }}
             </div>
-            <div class="overview">
+            <div class="overview" v-if="element.overview">
                 <div>Overview:</div>{{ element.overview }}
             </div>
 
@@ -34,6 +35,7 @@ export default {
         return {
             store,
             stars: 0,
+            cardPath: store.imgBasePath + this.element.poster_path,
         }
     },
     props: {
@@ -81,7 +83,9 @@ export default {
         }
     },
     created() {
-
+        if (!this.element.poster_path) {
+            this.cardPath = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAADwCAMAAABCI8pNAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQlPoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+BsXQAAGTzplwAAAAAElFTkSuQmCC';
+        }
     }
 }
 </script>
@@ -104,6 +108,8 @@ export default {
         img {
             border-radius: 1rem;
             max-width: 100%;
+
+            height: 286px;
         }
     }
 

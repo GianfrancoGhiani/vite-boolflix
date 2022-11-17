@@ -14,6 +14,9 @@
                         store.activeElement.original_name
                 }} </h2><img :src="store.apiLang + store.getLang()" alt="">
             </div>
+            <div class="gen"><span v-for="(gen, index) in store.activeElement.genres" :key="index">
+                    {{ gen.name }} /
+                </span></div>
             <div class="votes">
                 <span class="stars" v-html="store.jumboStarCreate()"> </span>
                 {{ store.activeElement.vote_count }}
@@ -79,6 +82,11 @@ export default {
 
                 max-width: 2rem;
             }
+        }
+
+        .gen {
+            margin-top: 0.5rem;
+            color: $grey-text;
         }
 
         .votes {

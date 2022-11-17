@@ -57,7 +57,7 @@ export const store = reactive({
       if (this.typeList == 'movie'){
         axios.get(this.jumboMovie + this.activeCard + this.apiKey).then((answer) => {
             this.activeElement = answer.data;
-            // console.log(this.activeElement)
+            console.log(this.activeElement)
             axios.get(this.jumboMovie + this.activeElement.id +'/credits'+ this.apiKey).then((answer) => {
               this.castList = [...answer.data.cast];
               for (let i = 0; i < 5; i++){
@@ -85,7 +85,6 @@ export const store = reactive({
       }
       this.jumboStarCreate();
       this.getLang();
-      // this.getCast();
     },
     // getCast(){
     //   if (this.typeList == 'movie'){

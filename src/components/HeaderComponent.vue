@@ -1,7 +1,7 @@
 <template>
     <section class="top-bar">
         <div class="container">
-            <a href="#"><img src="/img/logo.png" alt="Logo"></a>
+            <a href=""><img src="/img/logo.png" alt="Logo"></a>
             <SearchComponent />
         </div>
     </section>
@@ -29,6 +29,10 @@ export default {
 .top-bar {
     background-color: $black;
     height: 4rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3000;
 
     .container {
         @include flexrow;

@@ -58,7 +58,7 @@ section {
             top: 0;
             bottom: 0;
             width: 100%;
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.79) 0%, rgba(0, 0, 0, 0) 9.51%, rgba(0, 0, 0, 0) 65.6%, #000000 100%);
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.79) 0%, rgba(0, 0, 0, 0) 3%, rgba(0, 0, 0, 0) 85.6%, #000000 100%);
         }
     }
 
@@ -66,5 +66,23 @@ section {
         overflow-x: auto;
         white-space: nowrap;
     }
+}
+
+::-webkit-scrollbar {
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $grey-text;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $dark-red;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: lighten($color: $dark-red, $amount: 5);
 }
 </style>
