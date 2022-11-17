@@ -47,9 +47,10 @@ section {
         margin-top: 2rem;
     }
 
-    .scroll {
+    div.scroll {
         overflow-x: auto;
         white-space: nowrap;
+
     }
 }
 </style>

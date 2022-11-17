@@ -7,6 +7,8 @@ export const store = reactive({
     apiSerieRef: 'https://api.themoviedb.org/3/search/tv?api_key=9dc795a3109a77bd2118840b7dc6948c&query=',
     movieCardList: [],
     serieCardList: [],
+    activeMovie: null,
+    activeSeries: null,
     imgBasePath: 'http://image.tmdb.org/t/p/original',
     apiLang: 'https://countryflagsapi.com/png/',
     getMovieList() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="my-card">
+    <div class="my-card" @mouseover="getStars()">
         <div class="card-start">
             <img :src="store.imgBasePath + element.poster_path" alt="">
         </div>
@@ -12,8 +12,14 @@
             <div class="or-title" v-else="element.original_name">{{ element.original_name }}
                 <img :src="store.apiLang + getLang()" alt="">
             </div>
+            <div class="votes">
+                <span class="stars" v-html="starCreate()"> </span>
+                {{ element.vote_count }}
+            </div>
+            <div class="overview">
+                <div>Overview:</div>{{ element.overview }}
+            </div>
 
-            <div class="votes">{{ element.vote_count }}</div>
         </div>
     </div>
 </template>
@@ -27,12 +33,29 @@ export default {
     data() {
         return {
             store,
+            stars: 0,
         }
     },
     props: {
         element: Object,
     },
     methods: {
+        getStars() {
+            // this will return only int or int.5 num
+            this.stars = Math.round((((this.element.vote_average / 2) * 10) / 10) * 2) / 2;
+            this.starCreate();
+        },
+        starCreate() {
+
+            if ((this.stars > 1) && ((Math.round(this.stars) - this.stars) == 0.5)) {
+                return (('<i class="fa-solid fa-star"></i>').repeat(this.stars) + '<i class="fa-regular fa-star-half-stroke"></i>') + ('<i class="fa-regular fa-star"></i>').repeat(5 - (Math.round(this.stars)))
+            } else if (this.stars > 1) {
+                return ('<i class="fa-solid fa-star"></i>').repeat(this.stars) + ('<i class="fa-regular fa-star"></i>').repeat(5 - (Math.round(this.stars)))
+            } else {
+                return ('<i class="fa-regular fa-star"></i>').repeat(5)
+            }
+        }
+        ,
         getLang() {
             if (this.element.original_language == 'en') {
                 return 'gb'
@@ -44,6 +67,7 @@ export default {
         }
     },
     created() {
+
     }
 }
 </script>
@@ -74,7 +98,7 @@ export default {
     }
 
     .card-details {
-        background: linear-gradient(180deg, #000000 21.31%, rgba(0, 0, 0, 0) 88.52%);
+        background: linear-gradient(180deg, #000000 64.34%, rgba(0, 0, 0, 0) 100%);
         width: 100%;
         height: 100%;
         display: none;
@@ -82,6 +106,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+
 
 
 
@@ -105,6 +130,28 @@ export default {
 
         .votes {
             font-size: 85%;
+            color: $grey-text;
+
+            .stars {
+                color: $white;
+            }
+
+        }
+
+        .overview {
+            width: 100%;
+            height: 190px;
+            overflow-y: auto;
+            white-space: break-spaces;
+            word-break: break-all;
+            font-size: 85%;
+            padding: .3rem;
+            color: $grey-text;
+
+            div {
+                font-weight: 600;
+                margin-left: -.3rem;
+            }
         }
     }
 }
