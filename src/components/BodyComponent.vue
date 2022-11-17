@@ -40,8 +40,8 @@ export default {
     },
     created() {
         store.getPopularMovieList();
-        store.getMovieList();
-        store.getSerieList();
+
+
     }
 }
 </script>

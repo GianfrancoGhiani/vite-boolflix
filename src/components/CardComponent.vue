@@ -5,11 +5,11 @@
         </div>
         <div class="card-details">
             <div class="title" v-if="element.title">{{ element.title }}</div>
-            <div class="title" v-else="element.name">{{ element.name }}</div>
-            <div class="or-title" v-if="element.original_title">{{ element.original_title }}
+            <div class="title" v-else>{{ element.name }}</div>
+            <div class="or-title" v-if="element.original_title != element.title">{{ element.original_title }}
                 <img :src="store.apiLang + getLang()" alt="">
             </div>
-            <div class="or-title" v-else="element.original_name">{{ element.original_name }}
+            <div class="or-title" v-else>{{ element.original_name }}
                 <img :src="store.apiLang + getLang()" alt="">
             </div>
             <div class="votes">
@@ -49,6 +49,7 @@ export default {
             store.activeCard = this.element.id
             store.getJumboElement();
             store.search = false;
+            store.castList.length = 0;
         },
         getStars() {
             // this will return only int or int.5 num

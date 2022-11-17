@@ -21,6 +21,13 @@
             <div class="overview">
                 <div>Overview:</div>{{ store.activeElement.overview }}
             </div>
+            <div class="cast" v-if="store.castList">
+
+                <div v-for="(path, index) in store.profile_path">
+                    <ActorComponent :url="path" :n="index" />
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -29,15 +36,18 @@
 
 <script>
 import { store } from '../assets/store';
+import ActorComponent from './ActorComponent.vue';
+import CardComponent from './CardComponent.vue';
 export default {
-    name: 'JumboComponent',
+    name: "JumboComponent",
     data() {
         return {
             store,
-        }
+        };
     },
     created() {
     },
+    components: { ActorComponent, CardComponent }
 }
 </script>
 
@@ -46,9 +56,9 @@ export default {
 @use '../assets/style/partials/variables.scss' as *;
 
 .wrapper {
-    height: 50vh;
+    min-height: 50vh;
     background-size: cover;
-    padding-top: 2rem;
+    padding: 2rem 0;
 
     .container {
         background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 41.15%, #000000 97.61%, rgba(0, 0, 0, 0) 100%);
@@ -83,6 +93,12 @@ export default {
                 font-weight: 800;
                 font-size: 1.1rem;
             }
+        }
+
+        .cast {
+            @include flexrow;
+
+
         }
     }
 }

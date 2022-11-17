@@ -14,6 +14,15 @@ export const store = reactive({
     
     imgBasePath: 'http://image.tmdb.org/t/p/original',
     apiLang: 'https://countryflagsapi.com/png/',
+
+    imagePath:'https://image.tmdb.org/t/p/original',
+    typeList: 'movie',
+    activeCard: null,
+    jumboMovie: 'https://api.themoviedb.org/3/movie/',
+    jumboSerie: 'https://api.themoviedb.org/3/tv/',
+    activeElement: null,
+    castList: [],
+    profile_path: [],
     getMovieList() {
         axios.get(this.apiMovieRef + this.apiKey + this.querySearch).then((answer) => {
           // console.log(answer.data.results);
@@ -31,38 +40,67 @@ export const store = reactive({
       },
     getPopularMovieList() {
       axios.get(this.apiPopularMovie + this.apiKey).then((answer) => {
-        console.log(answer.data.results);
+        // console.log(answer.data.results);
         this.popularMovieList = [...answer.data.results];
         this.activeElement = this.popularMovieList[0];
+        this.activeCard = this.popularMovieList[0].id;
         this.getJumboElement();
+        
       }
       )
     },
-    imagePath:'https://image.tmdb.org/t/p/original',
-    typeList: null,
-    activeCard: null,
-    jumboMovie: 'https://api.themoviedb.org/3/movie/',
-    jumboSerie: 'https://api.themoviedb.org/3/tv/',
-    activeElement: null,
-
+    
     getJumboElement(){
+      this.profile_path= [];
+      this.castList= [];
+      // console.log(this.activeElement, this.activeCard, this.typeList)
       if (this.typeList == 'movie'){
         axios.get(this.jumboMovie + this.activeCard + this.apiKey).then((answer) => {
             this.activeElement = answer.data;
-            console.log(this.activeElement)
+            // console.log(this.activeElement)
+            axios.get(this.jumboMovie + this.activeElement.id +'/credits'+ this.apiKey).then((answer) => {
+              this.castList = [...answer.data.cast];
+              for (let i = 0; i < 5; i++){
+                this.profile_path.push(this.castList[i].profile_path)
+              }
+
+          }
+          )
         }
         )
       } else if(this.typeList == 'serie'){
         axios.get(this.jumboSerie + this.activeCard + this.apiKey).then((answer) => {
           this.activeElement = answer.data;
-          console.log(this.activeElement)
+          // console.log(this.activeElement)
+          axios.get(this.jumboSerie + this.activeElement.id + this.apiKey).then((answer) => {
+            this.castList = [...answer.data.cast];
+            console.log(this.castList[0])
+        }
+        )
       }
       )
       }
       this.jumboStarCreate();
       this.getLang();
-      
+      // this.getCast();
     },
+    // getCast(){
+    //   if (this.typeList == 'movie'){
+    //     axios.get(this.jumboMovie + this.activeElement.id +'/credits'+ this.apiKey).then((answer) => {
+    //         this.castList = [...answer.data.cast];
+    //         console.log(this.castList[0].profile_path)
+    //         console.log(this.imagePath + store.castList[0].profile_path)
+    //     }
+    //     )
+    //   } else if(this.typeList == 'serie'){
+    //     axios.get(this.jumboSerie + this.activeElement.id + this.apiKey).then((answer) => {
+    //       this.castList = [...answer.data.cast];
+    //       console.log(this.castList[0])
+    //   }
+    //   )
+    //   }
+    // }
+    //,
     jumboStarCreate() {
       const stars = Math.round((((this.activeElement.vote_average / 2) * 10) / 10) * 2) / 2;
       if ((stars > 1) && ((Math.round(stars) - stars) == 0.5)) {

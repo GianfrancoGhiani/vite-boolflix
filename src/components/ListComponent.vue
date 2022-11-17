@@ -1,8 +1,12 @@
 <template>
     <section>
-        <div class="scroll">
-            <CardComponent v-for="(card, index) in cardList" :key="index" :element="card" />
+        <div class="rel">
+            <div class="scroll">
+                <CardComponent v-for="(card, index) in cardList" :key="index" :element="card" />
+            </div>
+            <div class="bg-smoke"></div>
         </div>
+
     </section>
 </template>
 
@@ -28,6 +32,9 @@ export default {
     methods: {
     },
     created() {
+        store.getMovieList();
+        store.getSerieList();
+
 
     }
 }
@@ -42,10 +49,22 @@ export default {
 section {
     max-width: none;
 
-    div.scroll {
+    .rel {
+        position: relative;
+
+        .bg-smoke {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.79) 0%, rgba(0, 0, 0, 0) 9.51%, rgba(0, 0, 0, 0) 65.6%, #000000 100%);
+        }
+    }
+
+    .scroll {
         overflow-x: auto;
         white-space: nowrap;
-
     }
 }
 </style>
