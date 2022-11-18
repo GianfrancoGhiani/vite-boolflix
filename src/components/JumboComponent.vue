@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" :style="{ backgroundImage: `url(${store.imagePath}${store.activeElement.backdrop_path})` }"
+    <div class="wrapper" :style="{ backgroundImage: `url(${store.imgBasePath}${store.activeElement.backdrop_path})` }"
         alt="">
         <div class="container">
             <!-- show the first h1 if is a movie else show the second -->
@@ -24,8 +24,7 @@
             <div class="overview" v-if="store.activeElement.overview">
                 <div>Overview:</div>{{ store.activeElement.overview }}
             </div>
-            <div class="cast" v-if="store.castList">
-
+            <div class="cast" v-if="store.profile_path">
                 <div v-for="(path, index) in store.profile_path">
                     <ActorComponent :url="path" :n="index" />
                 </div>
@@ -49,6 +48,7 @@ export default {
         };
     },
     created() {
+
     },
     components: { ActorComponent, CardComponent }
 }
@@ -59,7 +59,7 @@ export default {
 @use '../assets/style/partials/variables.scss' as *;
 
 .wrapper {
-    min-height: 50vh;
+    min-height: 80vh;
     background-size: cover;
     padding: 2rem 0;
 
@@ -95,7 +95,7 @@ export default {
         }
 
         .overview {
-            max-width: 50%;
+            max-width: 70%;
 
             div {
                 font-weight: 800;

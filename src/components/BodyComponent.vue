@@ -6,6 +6,7 @@
         </div>
         <!-- most popular film -->
         <div class="container">
+            <!-- show most popular only if the user is not searching  -->
             <div v-if="!store.search">
                 <h2>Popular Movies</h2>
                 <ListComponent :cardList="store.popularMovieList" />
@@ -19,8 +20,12 @@
         </div>
 
     </section>
-    <section v-else>
-        aspetta
+    <section v-else class="waiter">
+        <div class="container">
+
+            <img src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-logo-red-black-png.png"
+                alt="netflix">
+        </div>
     </section>
 </template>
 
@@ -54,6 +59,11 @@ section {
     h2 {
         margin-top: 2rem;
     }
+}
 
+.waiter {
+    img {
+        max-width: 100%;
+    }
 }
 </style>

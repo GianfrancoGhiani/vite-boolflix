@@ -4,6 +4,7 @@
             <img :src="fullPath" alt="">
         </div>
         <div class="details">
+            <!-- show the movie/serie 's character name + the real name -->
             <div class="char">{{ store.castList[n].character }}</div>
             {{ store.castList[n].name }}
         </div>
@@ -18,7 +19,7 @@ export default {
     data() {
         return {
             store,
-            fullPath: `${store.imagePath}${this.url}`
+            fullPath: `${store.imgBasePath}${this.url}`
         }
     },
     props: {
@@ -26,10 +27,11 @@ export default {
         url: String
     },
     created() {
+        // if the actor profile pic path is null, take a "empty profile pic"
         if (!this.url) {
             this.fullPath = 'https://cdn.pixabay.com/photo/2014/04/02/10/25/man-303792_960_720.png';
         }
-        console.log(store.castList[this.n])
+
     }
 }
 </script>

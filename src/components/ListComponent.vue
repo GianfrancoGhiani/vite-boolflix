@@ -2,6 +2,7 @@
     <section>
         <div class="rel">
             <div class="scroll">
+                <!-- crete many cards as the length of the cardList created -->
                 <CardComponent v-for="(card, index) in cardList" :key="index" :element="card" />
             </div>
             <div class="bg-smoke"></div>
@@ -32,6 +33,7 @@ export default {
     methods: {
     },
     created() {
+        // start with creation of movie and series list
         store.getMovieList();
         store.getSerieList();
 
@@ -64,10 +66,12 @@ section {
 
     .scroll {
         overflow-x: auto;
-        white-space: nowrap;
+        white-space: nowrap; //it allows to put all cards in a single line
     }
 }
 
+
+// scrollbar styling
 ::-webkit-scrollbar {
     height: 0.5rem;
 }
