@@ -45,6 +45,8 @@ export default {
     },
     created() {
         store.getPopularMovieList();
+        store.autoScrollPopular();
+
 
 
     }

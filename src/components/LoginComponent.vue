@@ -1,5 +1,6 @@
 <template>
     <section class="profile container">
+        <h1>Chose your account</h1>
         <img :src="user" :alt="user" @click="select()">
         <select name="profile-img" id="pro-pic" v-model="user">
             <option v-for="(account, index) in store.accountsImg" :key="index" :value="account">Account nr:{{

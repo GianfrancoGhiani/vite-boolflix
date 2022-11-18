@@ -170,7 +170,8 @@ export const store = reactive({
     // autoscroll every 5 sec
     autoScrollPopular(){
       
-      this.scrolling = setInterval(()=>{
+      if (this.display){
+        this.scrolling = setInterval(()=>{
         
         this.activeIndex++;
         // if index is greater then the list length reset
@@ -179,7 +180,7 @@ export const store = reactive({
         }
         scrollTo({class: 'active'})
         this.getJumboElement();
-    }, 5000)
+    }, 5000)}
     },
     //clear intervall
     stopScroll(){
